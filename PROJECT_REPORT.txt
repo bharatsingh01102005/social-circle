@@ -1,0 +1,1743 @@
+================================================================================
+                    SOCIAL MEDIA WEB APPLICATION
+                         MINI PROJECT REPORT
+================================================================================
+
+Student Name: Bharat Singh
+Project Type: Full Stack Web Application
+Technology Stack: MERN (MongoDB, Express.js, React.js, Node.js)
+Date: November 2025
+
+================================================================================
+                              TABLE OF CONTENTS
+================================================================================
+
+1. Executive Summary
+2. Introduction
+3. Project Objectives
+4. System Requirements and Technologies Used
+5. System Architecture and Design
+6. Database Design and Schema
+7. Backend Implementation
+8. Frontend Implementation
+9. Features and Functionalities
+10. Conclusion and Future Scope
+
+================================================================================
+                           PAGE 1: EXECUTIVE SUMMARY
+================================================================================
+
+This report presents a comprehensive overview of a Social Media Web Application 
+developed as a mini project. The application is a full-stack solution built 
+using the MERN stack (MongoDB, Express.js, React.js, and Node.js), designed 
+to provide users with a modern social networking experience.
+
+The project implements core social media functionalities including user 
+authentication, post creation and management, real-time notifications, story 
+sharing, messaging capabilities, and social interactions such as likes, 
+comments, and following other users. The application features a responsive 
+user interface built with React and Tailwind CSS, coupled with a robust 
+RESTful API backend powered by Node.js and Express.
+
+Key highlights of the project include:
+- Secure user authentication with JWT tokens and bcrypt password hashing
+- Real-time communication using Socket.io
+- Media upload functionality with Multer middleware
+- Cloud storage integration with Cloudinary
+- State management using Redux Toolkit
+- RESTful API architecture following MVC pattern
+- Responsive design with modern UI/UX principles
+
+The application demonstrates proficiency in modern web development practices,
+including component-based architecture, middleware implementation, database 
+modeling with MongoDB, and real-time bidirectional event-based communication.
+
+================================================================================
+                          PAGE 2: INTRODUCTION
+================================================================================
+
+2.1 PROJECT BACKGROUND
+----------------------
+Social media platforms have become an integral part of modern communication,
+connecting people worldwide and enabling the sharing of ideas, experiences,
+and content. This project aims to develop a social media web application that
+incorporates essential features found in popular platforms while demonstrating
+fundamental concepts of full-stack web development.
+
+The application serves as a learning platform for understanding how complex
+social networking systems work behind the scenes, from user authentication
+to real-time communication and content management.
+
+2.2 PROBLEM STATEMENT
+---------------------
+The project addresses the need to understand and implement:
+- Secure user authentication and authorization mechanisms
+- Real-time communication between users
+- Efficient content management and delivery
+- Scalable database design for social networking features
+- Responsive user interface for various devices
+- RESTful API design principles
+
+2.3 PROJECT SCOPE
+-----------------
+The project encompasses:
+- User registration and authentication system
+- Profile management with customizable bio and profession
+- Post creation with image/video support
+- Social interactions (likes, comments, follows)
+- Story feature for temporary content sharing
+- Real-time messaging between users
+- Notification system
+- Loop feature (similar to short-form video content)
+- Save posts functionality
+- Online user status tracking
+
+2.4 MOTIVATION
+--------------
+The motivation behind this project is to:
+- Gain hands-on experience with full-stack development
+- Understand real-time web technologies
+- Implement secure authentication mechanisms
+- Work with modern JavaScript frameworks and libraries
+- Design and implement RESTful APIs
+- Manage complex database relationships
+- Create responsive and intuitive user interfaces
+
+================================================================================
+                      PAGE 3: PROJECT OBJECTIVES
+================================================================================
+
+3.1 PRIMARY OBJECTIVES
+----------------------
+The primary objectives of this social media web application project are:
+
+1. DEVELOP A FUNCTIONAL SOCIAL MEDIA PLATFORM
+   - Create a fully functional social networking application
+   - Implement core features expected in modern social media platforms
+   - Ensure smooth user experience across different devices
+
+2. IMPLEMENT SECURE AUTHENTICATION
+   - Develop a robust user registration and login system
+   - Implement JWT-based authentication for secure sessions
+   - Use bcrypt for password hashing and security
+   - Implement cookie-based session management
+
+3. CREATE REAL-TIME COMMUNICATION
+   - Integrate Socket.io for real-time features
+   - Implement online user status tracking
+   - Enable instant notifications
+   - Support real-time messaging capabilities
+
+4. BUILD SCALABLE BACKEND ARCHITECTURE
+   - Design RESTful API following industry best practices
+   - Implement MVC (Model-View-Controller) pattern
+   - Create modular and maintainable code structure
+   - Ensure proper error handling and validation
+
+5. DESIGN EFFICIENT DATABASE SCHEMA
+   - Model complex relationships between entities
+   - Optimize database queries for performance
+   - Implement proper indexing and referencing
+   - Ensure data integrity and consistency
+
+3.2 SECONDARY OBJECTIVES
+------------------------
+1. IMPLEMENT MODERN UI/UX DESIGN
+   - Create responsive layouts using Tailwind CSS
+   - Design intuitive navigation and user flows
+   - Implement loading states and user feedback
+   - Ensure accessibility standards
+
+2. MEDIA MANAGEMENT
+   - Implement file upload functionality
+   - Integrate cloud storage solutions
+   - Support multiple media types (images, videos)
+   - Optimize media delivery
+
+3. STATE MANAGEMENT
+   - Implement Redux Toolkit for global state
+   - Manage complex application state efficiently
+   - Ensure predictable state updates
+
+4. CODE QUALITY AND BEST PRACTICES
+   - Follow clean code principles
+   - Implement proper error handling
+   - Use environment variables for configuration
+   - Ensure code modularity and reusability
+
+================================================================================
+              PAGE 4: SYSTEM REQUIREMENTS AND TECHNOLOGIES USED
+================================================================================
+
+4.1 HARDWARE REQUIREMENTS
+-------------------------
+Minimum Requirements:
+- Processor: Intel Core i3 or equivalent
+- RAM: 4 GB
+- Storage: 10 GB available space
+- Network: Internet connection for cloud services
+
+Recommended Requirements:
+- Processor: Intel Core i5 or higher
+- RAM: 8 GB or more
+- Storage: 20 GB SSD
+- Network: Broadband internet connection
+
+4.2 SOFTWARE REQUIREMENTS
+-------------------------
+Development Environment:
+- Operating System: Windows 10/11, macOS, or Linux
+- Node.js: v14.x or higher
+- MongoDB: v4.4 or higher
+- Web Browser: Chrome, Firefox, or Edge (latest versions)
+- Code Editor: VS Code, WebStorm, or similar
+
+4.3 BACKEND TECHNOLOGIES
+------------------------
+1. Node.js (Runtime Environment)
+   - JavaScript runtime built on Chrome's V8 engine
+   - Enables server-side JavaScript execution
+
+2. Express.js v5.1.0
+   - Fast, unopinionated web framework for Node.js
+   - Handles routing and middleware management
+
+3. MongoDB with Mongoose v8.16.1
+   - NoSQL database for flexible data storage
+   - Mongoose ODM for data modeling and validation
+
+4. Authentication & Security:
+   - bcryptjs v3.0.2: Password hashing
+   - jsonwebtoken v9.0.2: JWT token generation
+   - cookie-parser v1.4.7: Cookie parsing middleware
+
+5. File Management:
+   - Multer v2.0.1: Multipart form data handling
+   - Cloudinary v2.7.0: Cloud-based media storage
+
+6. Real-time Communication:
+   - Socket.io v4.8.1: WebSocket implementation
+
+7. Additional Packages:
+   - dotenv v17.0.0: Environment variable management
+   - cors v2.8.5: Cross-Origin Resource Sharing
+   - nodemailer v7.0.4: Email functionality
+   - nodemon v3.1.10: Development auto-reload
+
+4.4 FRONTEND TECHNOLOGIES
+-------------------------
+1. React v19.1.0
+   - Component-based JavaScript library for UI
+   - Virtual DOM for efficient rendering
+
+2. State Management:
+   - Redux Toolkit v2.8.2: State management
+   - React-Redux v9.2.0: React bindings for Redux
+
+3. Routing:
+   - React Router DOM v7.6.3: Client-side routing
+
+4. Styling:
+   - Tailwind CSS v4.1.11: Utility-first CSS framework
+   - @tailwindcss/vite v4.1.11: Vite integration
+
+5. HTTP Client:
+   - Axios v1.10.0: Promise-based HTTP client
+
+6. UI Components & Icons:
+   - React Icons v5.5.0: Icon library
+   - React Spinners v0.17.0: Loading indicators
+
+7. Real-time Client:
+   - Socket.io-client v4.8.1: WebSocket client
+
+8. Build Tool:
+   - Vite v7.0.0: Fast build tool and dev server
+   - @vitejs/plugin-react v4.5.2: React plugin
+
+9. Code Quality:
+   - ESLint v9.29.0: Code linting
+   - Various ESLint plugins for React
+
+================================================================================
+                PAGE 5: SYSTEM ARCHITECTURE AND DESIGN
+================================================================================
+
+5.1 OVERALL ARCHITECTURE
+------------------------
+The application follows a three-tier architecture:
+
+┌─────────────────────────────────────────────────────────────┐
+│                     PRESENTATION LAYER                      │
+│              (React Frontend - Port 5173)                   │
+│  - Components: UI Components, Pages                         │
+│  - State Management: Redux Store                            │
+│  - Routing: React Router                                    │
+│  - Styling: Tailwind CSS                                    │
+└─────────────────────────────────────────────────────────────┘
+                            ↕ HTTP/WebSocket
+┌─────────────────────────────────────────────────────────────┐
+│                     APPLICATION LAYER                       │
+│              (Express Backend - Port 8000)                  │
+│  - Routes: API Endpoints                                    │
+│  - Controllers: Business Logic                              │
+│  - Middlewares: Authentication, File Upload                 │
+│  - Socket.io: Real-time Communication                       │
+└─────────────────────────────────────────────────────────────┘
+                            ↕ Mongoose ODM
+┌─────────────────────────────────────────────────────────────┐
+│                       DATA LAYER                            │
+│                    (MongoDB Database)                       │
+│  - Collections: Users, Posts, Messages, etc.                │
+│  - Relationships: Referenced Documents                      │
+│  - Indexes: Optimized Queries                               │
+└─────────────────────────────────────────────────────────────┘
+
+5.2 BACKEND ARCHITECTURE (MVC PATTERN)
+--------------------------------------
+The backend follows the Model-View-Controller pattern:
+
+PROJECT ROOT (backend/)
+│
+├── config/
+│   └── db.js                  # Database connection configuration
+│
+├── models/                    # Data Models (Mongoose Schemas)
+│   ├── user.model.js         # User schema with authentication
+│   ├── post.model.js         # Post schema with media
+│   ├── conversation.model.js # Chat conversation schema
+│   ├── message.model.js      # Message schema
+│   ├── loop.model.js         # Short video content schema
+│   ├── story.model.js        # Temporary story schema
+│   └── notification.model.js # Notification schema
+│
+├── controllers/              # Business Logic
+│   ├── auth.controllers.js   # Authentication logic
+│   ├── post.controllers.js   # Post CRUD operations
+│   ├── user.controllers.js   # User profile operations
+│   ├── message.controllers.js# Messaging logic
+│   ├── loop.controllers.js   # Loop operations
+│   └── story.controllers.js  # Story operations
+│
+├── routes/                   # API Routes
+│   ├── auth.routes.js        # /api/auth endpoints
+│   ├── post.routes.js        # /api/post endpoints
+│   ├── user.routes.js        # /api/user endpoints
+│   ├── message.routes.js     # /api/message endpoints
+│   ├── loop.routes.js        # /api/loop endpoints
+│   └── story.routes.js       # /api/story endpoints
+│
+├── middlewares/              # Custom Middlewares
+│   ├── isAuth.js            # JWT authentication middleware
+│   └── multer.js            # File upload middleware
+│
+├── public/                   # Static uploaded files
+│
+├── index.js                  # Main application entry point
+├── socket.js                 # Socket.io configuration
+├── package.json             # Dependencies and scripts
+└── .env                     # Environment variables
+
+5.3 FRONTEND ARCHITECTURE
+-------------------------
+The frontend follows a component-based architecture:
+
+PROJECT ROOT (frontend/)
+│
+├── public/                   # Static assets
+│   └── index.html           # HTML template
+│
+├── src/
+│   ├── assets/              # Images, logos, icons
+│   │
+│   ├── components/          # Reusable UI Components
+│   │   ├── Nav.jsx         # Navigation bar
+│   │   ├── Feed.jsx        # Main feed component
+│   │   ├── Post.jsx        # Post display
+│   │   ├── PostCard.jsx    # Individual post card
+│   │   ├── PostForm.jsx    # Create/edit post form
+│   │   ├── LoopCard.jsx    # Loop video card
+│   │   ├── LeftHome.jsx    # Sidebar component
+│   │   ├── OnlineUser.jsx  # Online users list
+│   │   ├── OtherUser.jsx   # User profile card
+│   │   ├── FollowButton.jsx# Follow/unfollow button
+│   │   ├── NotificationCard.jsx # Notification item
+│   │   └── ReceiverMessage.jsx  # Chat message bubble
+│   │
+│   ├── pages/               # Page Components
+│   │   ├── SignUp.jsx      # Registration page
+│   │   ├── SignIn.jsx      # Login page
+│   │   └── Feed.jsx        # Main feed page
+│   │
+│   ├── redux/               # State Management
+│   │   └── store.js        # Redux store configuration
+│   │
+│   ├── hooks/               # Custom React Hooks
+│   │
+│   ├── App.jsx             # Main application component
+│   ├── main.jsx            # Application entry point
+│   ├── api.js              # API configuration
+│   ├── App.css             # Application styles
+│   ├── auth.css            # Authentication styles
+│   └── index.css           # Global styles
+│
+├── index.html              # HTML entry point
+├── vite.config.js          # Vite configuration
+├── eslint.config.js        # ESLint configuration
+├── package.json            # Dependencies and scripts
+└── README.md               # Project documentation
+
+5.4 COMMUNICATION FLOW
+----------------------
+1. Client Request Flow:
+   User Action → React Component → Redux Action (optional)
+   → Axios HTTP Request → Express Route → Controller
+   → Model → MongoDB → Response Back
+
+2. Real-time Communication Flow:
+   Socket Event → Socket.io Server → User Socket Map
+   → Emit to Specific Client → Update UI
+
+5.5 SECURITY ARCHITECTURE
+-------------------------
+- Authentication: JWT tokens stored in HTTP-only cookies
+- Password Security: bcrypt hashing with salt rounds
+- API Protection: isAuth middleware validates tokens
+- CORS: Configured to allow only frontend origin
+- Environment Variables: Sensitive data in .env file
+- Input Validation: Mongoose schema validation
+
+================================================================================
+                  PAGE 6: DATABASE DESIGN AND SCHEMA
+================================================================================
+
+6.1 DATABASE OVERVIEW
+---------------------
+Database Type: MongoDB (NoSQL Document Database)
+Database Name: Configured via MONGODB_URL environment variable
+ODM: Mongoose v8.16.1
+Connection: Asynchronous connection with error handling
+
+6.2 COLLECTIONS AND SCHEMAS
+----------------------------
+
+6.2.1 USER COLLECTION (users)
+-----------------------------
+Purpose: Stores user account information and relationships
+
+Schema Structure:
+{
+  name: String (required)
+    - User's full name
+  
+  userName: String (required, unique)
+    - Unique username for identification
+  
+  email: String (required, unique)
+    - Email address for authentication
+  
+  password: String (required)
+    - Bcrypt hashed password
+  
+  profileImage: String
+    - URL to profile picture
+  
+  bio: String
+    - User biography/description
+  
+  profession: String
+    - User's profession or occupation
+  
+  gender: String
+    - User's gender
+  
+  followers: [ObjectId] → Reference to User
+    - Array of user IDs who follow this user
+  
+  following: [ObjectId] → Reference to User
+    - Array of user IDs this user follows
+  
+  posts: [ObjectId] → Reference to Post
+    - Array of post IDs created by user
+  
+  saved: [ObjectId] → Reference to Post
+    - Array of saved/bookmarked post IDs
+  
+  loops: [ObjectId] → Reference to Loop
+    - Array of loop (short video) IDs
+  
+  story: ObjectId → Reference to Story
+    - Reference to user's active story
+  
+  resetOtp: String
+    - OTP for password reset
+  
+  otpExpires: Date
+    - Expiration time for OTP
+  
+  isOtpVerified: Boolean (default: false)
+    - OTP verification status
+  
+  timestamps: true (createdAt, updatedAt)
+}
+
+Indexes:
+- userName: Unique index
+- email: Unique index
+
+6.2.2 POST COLLECTION (posts)
+-----------------------------
+Purpose: Stores user posts with media content
+
+Schema Structure:
+{
+  author: ObjectId → Reference to User (required)
+    - ID of the user who created the post
+  
+  mediaType: String (required)
+    - Enum: ["image", "video"]
+    - Type of media content
+  
+  media: String (required)
+    - URL to the media file
+  
+  caption: String
+    - Post caption/description
+  
+  likes: [ObjectId] → Reference to User
+    - Array of user IDs who liked the post
+  
+  comments: [
+    {
+      author: ObjectId → Reference to User
+        - ID of comment author
+      message: String
+        - Comment text
+    }
+  ]
+    - Array of comment objects
+  
+  timestamps: true (createdAt, updatedAt)
+}
+
+Indexes:
+- author: For querying user's posts
+- createdAt: For chronological sorting
+
+6.2.3 CONVERSATION COLLECTION (conversations)
+--------------------------------------------
+Purpose: Manages chat conversations between users
+
+Schema Structure:
+{
+  participants: [ObjectId] → Reference to User
+    - Array of user IDs in the conversation
+  
+  messages: [ObjectId] → Reference to Message
+    - Array of message IDs in this conversation
+  
+  timestamps: true (createdAt, updatedAt)
+}
+
+6.2.4 MESSAGE COLLECTION (messages)
+----------------------------------
+Purpose: Stores individual chat messages
+
+Schema Structure:
+{
+  sender: ObjectId → Reference to User
+    - ID of the message sender
+  
+  receiver: ObjectId → Reference to User
+    - ID of the message receiver
+  
+  message: String
+    - Message content
+  
+  timestamps: true (createdAt, updatedAt)
+}
+
+6.2.5 LOOP COLLECTION (loops)
+----------------------------
+Purpose: Stores short-form video content (similar to Reels/TikTok)
+
+Schema Structure:
+{
+  author: ObjectId → Reference to User
+    - ID of the user who created the loop
+  
+  video: String
+    - URL to the video file
+  
+  caption: String
+    - Loop caption/description
+  
+  likes: [ObjectId] → Reference to User
+    - Array of user IDs who liked the loop
+  
+  comments: [
+    {
+      author: ObjectId → Reference to User
+      message: String
+    }
+  ]
+  
+  timestamps: true (createdAt, updatedAt)
+}
+
+6.2.6 STORY COLLECTION (stories)
+-------------------------------
+Purpose: Stores temporary story content (24-hour duration)
+
+Schema Structure:
+{
+  author: ObjectId → Reference to User
+    - ID of the user who created the story
+  
+  mediaType: String
+    - Enum: ["image", "video"]
+  
+  media: String
+    - URL to the media file
+  
+  expiresAt: Date
+    - Expiration timestamp (24 hours)
+  
+  views: [ObjectId] → Reference to User
+    - Array of user IDs who viewed the story
+  
+  timestamps: true (createdAt, updatedAt)
+}
+
+6.2.7 NOTIFICATION COLLECTION (notifications)
+-------------------------------------------
+Purpose: Stores user notifications
+
+Schema Structure:
+{
+  recipient: ObjectId → Reference to User
+    - ID of the user receiving the notification
+  
+  sender: ObjectId → Reference to User
+    - ID of the user who triggered the notification
+  
+  type: String
+    - Enum: ["like", "comment", "follow", "message"]
+  
+  post: ObjectId → Reference to Post
+    - Related post ID (if applicable)
+  
+  message: String
+    - Notification message text
+  
+  read: Boolean (default: false)
+    - Read status
+  
+  timestamps: true (createdAt, updatedAt)
+}
+
+6.3 RELATIONSHIP DIAGRAM
+------------------------
+User ←→ User (followers/following - Many-to-Many)
+User → Post (One-to-Many)
+User → Loop (One-to-Many)
+User → Story (One-to-One)
+Post ← User (likes - Many-to-Many)
+Post → Comment (Embedded Array)
+Conversation ← User (participants - Many-to-Many)
+Conversation → Message (One-to-Many)
+Notification → User (recipient, sender)
+
+6.4 DATABASE ADVANTAGES
+-----------------------
+- Flexible schema for evolving requirements
+- Easy relationship modeling with references
+- Efficient document retrieval
+- Scalable for growing user base
+- Support for embedded documents (comments)
+- Built-in indexing capabilities
+
+================================================================================
+                   PAGE 7: BACKEND IMPLEMENTATION
+================================================================================
+
+7.1 SERVER SETUP AND CONFIGURATION
+----------------------------------
+Entry Point: index.js
+
+Key Implementations:
+1. Express Application Initialization
+   - Creates Express app instance
+   - Configures port from environment variable (default: 8000)
+
+2. Middleware Configuration:
+   - CORS: Configured for http://localhost:5173 with credentials
+   - express.json(): Parses JSON request bodies
+   - cookie-parser: Parses cookies from requests
+   - express.static: Serves uploaded files from public directory
+
+3. Database Connection:
+   - Asynchronous MongoDB connection via Mongoose
+   - Connection string from environment variable
+   - Error handling for connection failures
+
+4. Route Registration:
+   - /api/auth: Authentication routes
+   - /api/post: Post management routes
+   - Additional routes for user, message, loop, story features
+
+5. Server Startup:
+   - Listens on configured port
+   - Establishes database connection
+   - Logs server status
+
+7.2 AUTHENTICATION SYSTEM
+-------------------------
+Implementation: auth.controllers.js
+
+7.2.1 User Registration (signUp):
+- Accepts: name, userName, email, password, gender
+- Process:
+  1. Validates input data
+  2. Checks for existing username/email
+  3. Hashes password using bcrypt
+  4. Creates new user document
+  5. Generates JWT token
+  6. Sets HTTP-only cookie
+  7. Returns user data
+
+7.2.2 User Login (signIn):
+- Accepts: email/username, password
+- Process:
+  1. Finds user by email or username
+  2. Verifies password with bcrypt compare
+  3. Generates JWT token
+  4. Sets authentication cookie
+  5. Returns user data
+
+7.2.3 User Logout (signOut):
+- Clears authentication cookie
+- Returns success message
+
+7.2.4 Session Validation (me):
+- Protected route using isAuth middleware
+- Returns current user data if authenticated
+
+7.3 AUTHENTICATION MIDDLEWARE
+-----------------------------
+Implementation: middlewares/isAuth.js
+
+Process:
+1. Extracts JWT token from cookies
+2. Verifies token using secret key
+3. Retrieves user from database
+4. Attaches user to request object
+5. Allows request to proceed or returns 401
+
+7.4 POST MANAGEMENT SYSTEM
+--------------------------
+Implementation: post.controllers.js
+
+7.4.1 Upload Post (uploadPost):
+- Uses multer middleware for file handling
+- Accepts: media file, caption, mediaType
+- Process:
+  1. Validates file upload
+  2. Stores file locally in public directory
+  3. Creates post document in database
+  4. Updates user's posts array
+  5. Returns created post data
+
+7.4.2 Get All Posts (getAllPosts):
+- Retrieves posts from database
+- Populates author information
+- Sorts by creation date (newest first)
+- Returns array of posts
+
+7.4.3 Like Post (like):
+- Toggles like status for authenticated user
+- Updates likes array in post document
+- Returns updated like status
+
+7.4.4 Update Post (updatePost):
+- Allows author to edit post
+- Supports media replacement
+- Updates caption and/or media
+- Returns updated post
+
+7.4.5 Delete Post (deletePost):
+- Verifies author authorization
+- Removes post document
+- Updates user's posts array
+- Deletes associated media file
+- Returns success message
+
+7.4.6 Comment Management:
+- Add Comment: Creates new comment on post
+- Update Comment: Edits existing comment (author only)
+- Delete Comment: Removes comment (author only)
+
+7.5 FILE UPLOAD MIDDLEWARE
+--------------------------
+Implementation: middlewares/multer.js
+
+Configuration:
+- Storage: Disk storage in public directory
+- Destination: public/ folder
+- Filename: Unique name with original extension
+- File Filter: Validates file types
+- Size Limit: Configurable maximum size
+
+7.6 SOCKET.IO IMPLEMENTATION
+----------------------------
+Implementation: socket.js
+
+Features:
+1. WebSocket Server Setup:
+   - Creates HTTP server with Express app
+   - Initializes Socket.io with CORS configuration
+   - Allows connections from frontend origin
+
+2. User Socket Mapping:
+   - userSocketMap: Object storing userId → socketId
+   - getSocketId(): Helper function to retrieve socket ID
+
+3. Connection Handling:
+   - Extracts userId from handshake query
+   - Stores socket ID in map
+   - Broadcasts online users list
+
+4. Disconnection Handling:
+   - Removes user from socket map
+   - Updates online users list
+   - Notifies all clients
+
+5. Real-time Features:
+   - Online user status
+   - Instant notifications
+   - Real-time messaging
+   - Live updates
+
+7.7 API ENDPOINTS SUMMARY
+-------------------------
+
+Authentication Routes (/api/auth):
+- POST /signup          - Register new user
+- POST /signin          - User login
+- GET  /signout         - User logout
+- GET  /me              - Get current user (protected)
+
+Post Routes (/api/post):
+- POST   /upload                    - Create new post (protected)
+- GET    /getAll                    - Get all posts (protected)
+- GET    /like/:postId              - Toggle like (protected)
+- PUT    /:postId                   - Update post (protected)
+- DELETE /:postId                   - Delete post (protected)
+- POST   /:postId/comment           - Add comment (protected)
+- PUT    /:postId/comment/:commentId- Update comment (protected)
+- DELETE /:postId/comment/:commentId- Delete comment (protected)
+
+Additional Route Modules:
+- user.routes.js: User profile and relationship management
+- message.routes.js: Chat messaging endpoints
+- loop.routes.js: Short video content management
+- story.routes.js: Story creation and viewing
+
+7.8 ERROR HANDLING
+------------------
+- Try-catch blocks in all async controllers
+- Mongoose validation errors
+- HTTP status codes (200, 201, 400, 401, 404, 500)
+- Descriptive error messages
+- Database connection error handling
+
+7.9 SECURITY IMPLEMENTATIONS
+----------------------------
+- Password hashing with bcrypt (10 salt rounds)
+- JWT token with secret key
+- HTTP-only cookies prevent XSS
+- CORS restricted to frontend domain
+- Protected routes with isAuth middleware
+- Input validation and sanitization
+- File type validation in uploads
+
+================================================================================
+                   PAGE 8: FRONTEND IMPLEMENTATION
+================================================================================
+
+8.1 APPLICATION STRUCTURE
+-------------------------
+Main Entry Point: main.jsx
+
+Key Components:
+1. React Application Initialization
+   - Wraps app with BrowserRouter for routing
+   - Provides Redux store to entire app
+   - Renders root App component
+
+2. App Component (App.jsx)
+   - Manages global authentication state
+   - Implements route protection
+   - Handles session persistence
+   - Defines main application routes
+
+8.2 ROUTING IMPLEMENTATION
+--------------------------
+Implementation: App.jsx with React Router
+
+Route Structure:
+1. Public Routes:
+   - /signup: User registration page
+   - /signin: User login page
+   - Redirect to / if already authenticated
+
+2. Protected Routes:
+   - /: Main feed (requires authentication)
+   - Redirect to /signin if not authenticated
+
+3. Route Guards:
+   - Checks user authentication status
+   - Automatic redirection based on auth state
+   - Session validation on app load
+
+8.3 AUTHENTICATION FLOW
+-----------------------
+
+8.3.1 Session Check:
+- useEffect hook on app mount
+- Fetches /api/auth/me endpoint
+- Sets user state if valid session
+- Shows loading state during check
+- Handles failed authentication gracefully
+
+8.3.2 Sign Up Page (SignUp.jsx):
+- Form fields: name, username, email, password, gender
+- Client-side validation
+- POST request to /api/auth/signup
+- Sets user state on success
+- Displays error messages
+- Redirects to feed after registration
+
+8.3.3 Sign In Page (SignIn.jsx):
+- Form fields: email/username, password
+- Remember me option
+- POST request to /api/auth/signin
+- Cookie-based session management
+- Error handling and user feedback
+- Automatic redirect after login
+
+8.3.4 Sign Out:
+- Handled in Feed component
+- GET request to /api/auth/signout
+- Clears user state
+- Redirects to signin page
+
+8.4 STATE MANAGEMENT
+--------------------
+Technology: Redux Toolkit
+
+Store Configuration:
+- Centralized state management
+- Redux DevTools integration
+- Middleware for async actions
+- Slice-based state organization
+
+Benefits:
+- Predictable state updates
+- Easy debugging
+- State persistence
+- Component communication
+- Separation of concerns
+
+8.5 COMPONENT ARCHITECTURE
+--------------------------
+
+8.5.1 Navigation Component (Nav.jsx):
+- Persistent header across pages
+- Logo and branding
+- Navigation links (Home, Search, Explore, Messages, Notifications)
+- User profile dropdown
+- Create post button
+- Logout functionality
+- Responsive mobile menu
+
+8.5.2 Feed Components:
+
+A. Feed Page (Feed.jsx):
+   - Main container for authenticated users
+   - Three-column layout (sidebar, feed, suggestions)
+   - Post creation section
+   - Infinite scroll implementation
+   - Real-time updates
+
+B. LeftHome Component (LeftHome.jsx):
+   - Left sidebar navigation
+   - User profile summary
+   - Quick action buttons
+   - Saved posts link
+   - Settings access
+
+C. Post Display (PostCard.jsx):
+   - Individual post rendering
+   - Author information
+   - Media display (image/video)
+   - Like and comment counts
+   - Action buttons (like, comment, share, save)
+   - Timestamp display
+   - Options menu (edit, delete for owner)
+
+D. Post Component (Post.jsx):
+   - Detailed post view
+   - Full comment thread
+   - Comment form
+   - Comment management (edit, delete)
+   - Like animation
+   - Share functionality
+
+8.5.3 Form Components:
+
+A. PostForm Component (PostForm.jsx):
+   - Create new post interface
+   - Media upload with preview
+   - Caption input
+   - Media type selection (image/video)
+   - Form validation
+   - Upload progress indicator
+   - Success/error notifications
+
+8.5.4 Social Components:
+
+A. FollowButton Component (FollowButton.jsx):
+   - Toggle follow/unfollow
+   - Optimistic UI updates
+   - API integration
+   - Loading states
+   - Error handling
+
+B. OnlineUser Component (OnlineUser.jsx):
+   - Displays online users
+   - Real-time status updates via Socket.io
+   - User avatar with online indicator
+   - Click to message
+   - Online user count
+
+C. OtherUser Component (OtherUser.jsx):
+   - User suggestion cards
+   - Profile preview
+   - Follow button integration
+   - Navigate to profile
+
+8.5.5 Notification System:
+
+NotificationCard Component (NotificationCard.jsx):
+- Displays various notification types
+- User actions (likes, comments, follows)
+- Timestamp
+- Read/unread status
+- Click to navigate
+- Mark as read functionality
+
+8.5.6 Messaging Components:
+
+ReceiverMessage Component (ReceiverMessage.jsx):
+- Chat message bubbles
+- Sender/receiver differentiation
+- Message timestamps
+- Read receipts
+- Avatar display
+- Message grouping
+
+8.5.7 Loop/Story Components:
+
+LoopCard Component (LoopCard.jsx):
+- Short video display
+- Auto-play functionality
+- Like and comment controls
+- Swipe navigation
+- Full-screen mode
+- User interaction tracking
+
+8.6 STYLING APPROACH
+--------------------
+Primary Framework: Tailwind CSS
+
+Features:
+- Utility-first CSS approach
+- Responsive design classes
+- Custom color scheme
+- Component-specific styles
+- Hover and focus states
+- Animations and transitions
+- Dark mode support (if implemented)
+
+Additional Styles:
+- App.css: Global application styles
+- auth.css: Authentication page specific styles
+- index.css: Base styles and CSS reset
+
+8.7 HTTP CLIENT CONFIGURATION
+-----------------------------
+Implementation: api.js with Axios
+
+Configuration:
+- Base URL for API requests
+- Default headers
+- Credentials inclusion for cookies
+- Request/response interceptors
+- Error handling
+- Timeout configuration
+
+Benefits:
+- Centralized API configuration
+- Consistent error handling
+- Request/response transformation
+- Automatic JSON parsing
+
+8.8 REAL-TIME FEATURES
+----------------------
+Implementation: Socket.io-client
+
+Features:
+1. Connection Management:
+   - Connects to Socket.io server
+   - Passes userId in query
+   - Handles connection errors
+   - Reconnection logic
+
+2. Event Listeners:
+   - getOnlineUsers: Updates online user list
+   - newNotification: Displays instant notifications
+   - newMessage: Updates message threads
+   - Connection status changes
+
+3. Event Emitters:
+   - Send messages
+   - Update typing status
+   - Mark messages as read
+
+8.9 USER EXPERIENCE ENHANCEMENTS
+--------------------------------
+
+1. Loading States:
+   - Spinners from react-spinners
+   - Skeleton screens
+   - Progress indicators
+   - Disabled state for buttons
+
+2. Error Handling:
+   - Toast notifications
+   - Inline error messages
+   - Fallback UI
+   - Retry mechanisms
+
+3. Optimistic Updates:
+   - Immediate UI feedback
+   - Background API calls
+   - Rollback on failure
+   - Smooth user experience
+
+4. Responsive Design:
+   - Mobile-first approach
+   - Breakpoint-based layouts
+   - Touch-friendly interfaces
+   - Adaptive navigation
+
+5. Accessibility:
+   - Semantic HTML
+   - ARIA labels
+   - Keyboard navigation
+   - Screen reader support
+
+8.10 PERFORMANCE OPTIMIZATIONS
+------------------------------
+- Code splitting with React.lazy
+- Memoization with React.memo
+- useCallback for function memoization
+- useMemo for expensive calculations
+- Lazy loading images
+- Debouncing search inputs
+- Virtual scrolling for long lists
+- Optimized re-renders
+
+================================================================================
+                  PAGE 9: FEATURES AND FUNCTIONALITIES
+================================================================================
+
+9.1 USER AUTHENTICATION AND AUTHORIZATION
+-----------------------------------------
+
+9.1.1 User Registration:
+- Create account with email and username
+- Password strength validation
+- Unique username enforcement
+- Gender selection
+- Automatic login after registration
+- Profile creation
+
+9.1.2 User Login:
+- Email or username login
+- Secure password verification
+- Remember me functionality
+- Session persistence
+- Cookie-based authentication
+
+9.1.3 User Logout:
+- Secure session termination
+- Cookie clearance
+- Redirect to login page
+
+9.1.4 Session Management:
+- JWT token authentication
+- HTTP-only cookie storage
+- Automatic session validation
+- Token expiration handling
+- Refresh token mechanism (if implemented)
+
+9.2 PROFILE MANAGEMENT
+----------------------
+
+9.2.1 View Profile:
+- Display profile picture
+- Show bio and profession
+- View follower/following count
+- Display user's posts
+- Show loops and stories
+
+9.2.2 Edit Profile:
+- Update profile picture
+- Edit bio
+- Change profession
+- Update personal information
+- Save changes
+
+9.2.3 User Relationships:
+- Follow other users
+- Unfollow users
+- View followers list
+- View following list
+- Follower/following counts
+
+9.3 POST MANAGEMENT
+-------------------
+
+9.3.1 Create Post:
+- Upload image or video
+- Add caption
+- Select media type
+- Preview before posting
+- Instant feed update
+
+9.3.2 View Posts:
+- Chronological feed
+- Display author information
+- Show media content
+- View likes and comments count
+- Timestamp display
+
+9.3.3 Edit Post:
+- Update caption
+- Replace media (optional)
+- Save changes
+- Authorization check (owner only)
+
+9.3.4 Delete Post:
+- Remove post from database
+- Delete associated media
+- Update user's post count
+- Authorization check (owner only)
+
+9.3.5 Post Interactions:
+A. Like/Unlike:
+   - Toggle like status
+   - Real-time like count update
+   - Like animation
+   - Notification to post author
+
+B. Comment System:
+   - Add comments on posts
+   - View comment thread
+   - Edit own comments
+   - Delete own comments
+   - Comment notifications
+   - Nested comment replies (if implemented)
+
+C. Save Posts:
+   - Bookmark posts for later
+   - View saved posts collection
+   - Remove from saved
+
+D. Share Posts:
+   - Copy post link
+   - Share to other platforms
+   - Share in messages (if implemented)
+
+9.4 STORY FEATURE
+-----------------
+
+9.4.1 Create Story:
+- Upload image or video
+- 24-hour automatic expiration
+- Story preview
+- Add to user's story
+
+9.4.2 View Stories:
+- Story viewer interface
+- Swipe navigation
+- Auto-advance to next story
+- View count display
+- Story ring indicator
+
+9.4.3 Story Management:
+- Delete own story
+- View who saw story
+- Story expiration handling
+
+9.5 LOOP FEATURE (SHORT VIDEOS)
+-------------------------------
+
+9.5.1 Create Loop:
+- Upload short video
+- Add caption
+- Video processing
+- Publish loop
+
+9.5.2 Browse Loops:
+- Vertical scroll feed
+- Auto-play videos
+- Like loops
+- Comment on loops
+- Share loops
+
+9.5.3 Loop Interactions:
+- Like/unlike
+- Comment
+- Share
+- Save loop
+
+9.6 MESSAGING SYSTEM
+--------------------
+
+9.6.1 Direct Messages:
+- One-on-one conversations
+- Real-time message delivery
+- Message thread display
+- Conversation list
+
+9.6.2 Message Features:
+- Send text messages
+- Real-time delivery
+- Read receipts
+- Message timestamps
+- Delete messages
+
+9.6.3 Chat Interface:
+- Conversation view
+- Message bubbles
+- Typing indicators
+- Online status
+
+9.7 NOTIFICATION SYSTEM
+-----------------------
+
+9.7.1 Notification Types:
+- Like notifications
+- Comment notifications
+- Follow notifications
+- Message notifications
+- Mention notifications (if implemented)
+
+9.7.2 Notification Features:
+- Real-time delivery
+- Notification count badge
+- Mark as read
+- Click to navigate
+- Notification history
+
+9.8 REAL-TIME FEATURES
+----------------------
+
+9.8.1 Online Status:
+- Display online users
+- Real-time status updates
+- Online indicator
+- Last seen timestamp
+
+9.8.2 Live Updates:
+- Real-time post likes
+- Instant comment updates
+- Live message delivery
+- Notification push
+
+9.9 SEARCH AND DISCOVERY
+------------------------
+
+9.9.1 User Search:
+- Search by username
+- Search by name
+- User suggestions
+- Search history
+
+9.9.2 Content Discovery:
+- Explore page
+- Trending posts
+- Suggested users
+- Popular loops/stories
+
+9.10 ADDITIONAL FEATURES
+------------------------
+
+9.10.1 Media Handling:
+- Image upload and display
+- Video upload and playback
+- Media compression
+- Multiple format support
+- Cloud storage integration
+
+9.10.2 User Interface:
+- Responsive design
+- Dark/light mode (if implemented)
+- Smooth animations
+- Intuitive navigation
+- Loading states
+
+9.10.3 Performance:
+- Fast load times
+- Optimized queries
+- Lazy loading
+- Caching strategies
+- Efficient rendering
+
+9.10.4 Security:
+- Secure authentication
+- Password hashing
+- XSS prevention
+- CSRF protection
+- Input sanitization
+
+================================================================================
+              PAGE 10: CONCLUSION AND FUTURE SCOPE
+================================================================================
+
+10.1 PROJECT SUMMARY
+--------------------
+This social media web application successfully demonstrates the implementation
+of a full-stack MERN application with modern web development practices. The
+project encompasses all major features expected in a contemporary social
+networking platform, including user authentication, content management,
+real-time communication, and social interactions.
+
+Key Achievements:
+- Fully functional social media platform
+- Secure authentication and authorization system
+- Real-time communication using WebSocket technology
+- Responsive and intuitive user interface
+- Scalable backend architecture
+- Efficient database design
+- RESTful API implementation
+- Modern frontend with React and Redux
+- Media upload and management
+- Social features (likes, comments, follows)
+
+10.2 TECHNICAL ACCOMPLISHMENTS
+------------------------------
+
+10.2.1 Backend Development:
+- Successfully implemented RESTful API with Express.js
+- Created secure authentication using JWT and bcrypt
+- Designed efficient MongoDB schema with relationships
+- Implemented middleware for authentication and file uploads
+- Integrated Socket.io for real-time features
+- Proper error handling and validation
+
+10.2.2 Frontend Development:
+- Built responsive UI with React and Tailwind CSS
+- Implemented state management with Redux Toolkit
+- Created reusable component architecture
+- Integrated real-time updates with Socket.io-client
+- Implemented route protection and navigation
+- Optimized performance with lazy loading
+
+10.2.3 Full-Stack Integration:
+- Seamless communication between frontend and backend
+- Cookie-based authentication flow
+- Real-time bidirectional communication
+- Efficient data fetching and caching
+- File upload and retrieval system
+
+10.3 LEARNING OUTCOMES
+----------------------
+
+Through this project, the following skills and knowledge were acquired:
+
+1. Full-Stack Development:
+   - End-to-end application development
+   - Frontend-backend integration
+   - API design and implementation
+
+2. Authentication & Security:
+   - JWT token implementation
+   - Password hashing with bcrypt
+   - Session management
+   - Security best practices
+
+3. Real-Time Technologies:
+   - WebSocket implementation with Socket.io
+   - Real-time event handling
+   - Bidirectional communication
+
+4. Database Design:
+   - NoSQL database modeling
+   - Mongoose ODM usage
+   - Complex relationship management
+   - Query optimization
+
+5. Modern React Development:
+   - Hooks (useState, useEffect, custom hooks)
+   - Component composition
+   - State management with Redux
+   - React Router implementation
+
+6. Professional Development Practices:
+   - Project structure and organization
+   - Code modularity and reusability
+   - Environment variable management
+   - Error handling patterns
+
+10.4 CHALLENGES FACED
+---------------------
+
+1. Real-Time Implementation:
+   Challenge: Implementing Socket.io with proper user tracking
+   Solution: Created userSocketMap for efficient socket management
+
+2. File Upload Handling:
+   Challenge: Managing media uploads and storage
+   Solution: Implemented Multer middleware with local storage
+
+3. Authentication Flow:
+   Challenge: Maintaining secure session across requests
+   Solution: JWT tokens with HTTP-only cookies
+
+4. State Management:
+   Challenge: Managing complex application state
+   Solution: Redux Toolkit for predictable state updates
+
+5. Database Relationships:
+   Challenge: Modeling complex social relationships
+   Solution: Mongoose references and populated queries
+
+10.5 FUTURE ENHANCEMENTS
+------------------------
+
+10.5.1 Feature Additions:
+
+1. Enhanced Messaging:
+   - Group chat functionality
+   - Voice messages
+   - Video calling
+   - File sharing in chats
+   - Message reactions
+
+2. Advanced Content Features:
+   - Hashtag system
+   - Mention functionality
+   - Post scheduling
+   - Draft posts
+   - Multiple media per post
+   - Post editing history
+
+3. Improved Discovery:
+   - Advanced search filters
+   - Trending hashtags
+   - Personalized recommendations
+   - Algorithm-based feed
+
+4. Social Features:
+   - User blocking
+   - Private accounts
+   - Close friends list
+   - Story highlights
+   - Live streaming
+
+5. Engagement Features:
+   - Polls in posts/stories
+   - Question stickers
+   - Collaborative posts
+   - Challenges/contests
+
+10.5.2 Technical Improvements:
+
+1. Performance Optimization:
+   - Implement Redis caching
+   - Database query optimization
+   - CDN integration for media
+   - Image optimization and compression
+   - Lazy loading improvements
+   - Code splitting optimization
+
+2. Scalability:
+   - Microservices architecture
+   - Load balancing
+   - Database sharding
+   - Horizontal scaling
+   - Message queue implementation (RabbitMQ/Kafka)
+
+3. Security Enhancements:
+   - Two-factor authentication
+   - Email verification
+   - Rate limiting
+   - Advanced input sanitization
+   - Security headers
+   - Regular security audits
+
+4. Testing:
+   - Unit tests for components
+   - Integration tests for API
+   - End-to-end testing
+   - Performance testing
+   - Security testing
+
+5. DevOps:
+   - CI/CD pipeline
+   - Docker containerization
+   - Kubernetes orchestration
+   - Automated deployments
+   - Monitoring and logging
+
+6. Cloud Integration:
+   - Cloudinary for media storage (expand usage)
+   - AWS S3 for file storage
+   - Cloud-based database (MongoDB Atlas)
+   - Serverless functions
+
+10.5.3 User Experience:
+
+1. Accessibility:
+   - WCAG compliance
+   - Screen reader optimization
+   - Keyboard navigation enhancement
+   - High contrast mode
+
+2. Internationalization:
+   - Multi-language support
+   - RTL language support
+   - Timezone handling
+   - Currency localization
+
+3. Mobile Applications:
+   - React Native mobile app
+   - Native iOS app
+   - Native Android app
+   - Progressive Web App (PWA)
+
+4. Analytics:
+   - User behavior tracking
+   - Engagement metrics
+   - Performance monitoring
+   - A/B testing framework
+
+10.5.4 Monetization Features:
+
+1. Advertising:
+   - Sponsored posts
+   - Ad placement system
+   - Advertiser dashboard
+
+2. Premium Features:
+   - Subscription model
+   - Verified badges
+   - Advanced analytics
+   - Additional storage
+
+3. Creator Tools:
+   - Monetization options
+   - Creator dashboard
+   - Revenue sharing
+   - Tipping system
+
+10.6 DEPLOYMENT CONSIDERATIONS
+------------------------------
+
+10.6.1 Hosting Options:
+- Frontend: Vercel, Netlify, AWS S3 + CloudFront
+- Backend: Heroku, AWS EC2, DigitalOcean
+- Database: MongoDB Atlas, AWS DocumentDB
+- Media: Cloudinary, AWS S3
+
+10.6.2 Production Checklist:
+- Environment variable configuration
+- HTTPS implementation
+- Database backup strategy
+- Monitoring and logging setup
+- Error tracking (Sentry)
+- Performance monitoring
+- SEO optimization
+- Social meta tags
+
+10.7 CONCLUSION
+---------------
+This social media web application successfully demonstrates the practical
+application of modern web development technologies and best practices. The
+project provides a solid foundation for understanding full-stack development,
+real-time communication, and complex application architecture.
+
+The implementation showcases proficiency in the MERN stack, authentication
+systems, real-time technologies, and responsive design. While the current
+version includes core social media functionalities, the extensive future
+scope demonstrates understanding of scalability, performance, and user
+experience considerations.
+
+The project serves as an excellent learning experience and portfolio piece,
+demonstrating the ability to:
+- Design and implement complex systems
+- Work with modern web technologies
+- Apply security best practices
+- Create user-friendly interfaces
+- Manage real-time data flow
+- Structure scalable applications
+
+This foundation can be expanded upon to create a production-ready social
+media platform with continued development and refinement.
+
+10.8 ACKNOWLEDGMENTS
+--------------------
+This project was developed as a mini project to demonstrate full-stack
+development capabilities. Special acknowledgment to:
+
+- The open-source community for excellent documentation
+- React, Express, MongoDB, and Socket.io teams
+- Various online resources and tutorials
+- Stack Overflow community for troubleshooting help
+- GitHub for version control and collaboration
+
+10.9 PROJECT REPOSITORY
+-----------------------
+Project Directory: D:\RESET PC\Bharat Singh Jovac Project
+
+Project Structure:
+- Backend: Node.js/Express API server
+- Frontend: React application with Vite
+- Version Control: Git repository
+
+Technologies Demonstrated:
+- Frontend: React 19, Redux Toolkit, Tailwind CSS
+- Backend: Node.js, Express 5, Socket.io
+- Database: MongoDB with Mongoose
+- Authentication: JWT, bcrypt
+- File Upload: Multer
+- Real-time: Socket.io
+- Build Tool: Vite
+
+================================================================================
+                              END OF REPORT
+================================================================================
+
+Submitted by: Bharat Singh
+Date: November 2025
+Project Type: Mini Project - Full Stack Web Application
+Technology Stack: MERN (MongoDB, Express.js, React.js, Node.js)
+
+This report comprehensively documents the development, implementation, and
+future scope of the Social Media Web Application project.
+
+================================================================================
